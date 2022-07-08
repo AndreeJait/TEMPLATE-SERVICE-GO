@@ -1,4 +1,4 @@
-# DelGong BE Story
+# Project Name
 
 ## Requirements
 1. Go 1.15 >
