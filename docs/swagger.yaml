@@ -1,0 +1,121 @@
+definitions:
+  auth.AuthenticationRequestDto:
+    properties:
+      password:
+        example: Aigo1234
+        type: string
+      username:
+        example: Bagong212
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  auth.RegisterRequestDto:
+    properties:
+      dateBirth:
+        example: "2002-01-11"
+        type: string
+      name:
+        example: Budi Sudirman
+        type: string
+      password:
+        example: Aigo1234
+        type: string
+      totalExp:
+        example: 0
+        type: number
+      username:
+        example: Bagong212
+        type: string
+    required:
+    - dateBirth
+    - name
+    - password
+    - username
+    type: object
+  story.StoryRequestDto:
+    properties:
+      chapter:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      isPublished:
+        type: string
+      level:
+        type: string
+      maxAge:
+        type: integer
+      minAge:
+        type: integer
+      thumbnail:
+        type: string
+      title:
+        type: string
+    required:
+    - description
+    - title
+    type: object
+info:
+  contact: {}
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: AuthenticationRequestDto
+        in: body
+        name: AuthenticationRequestDto
+        required: true
+        schema:
+          $ref: '#/definitions/auth.AuthenticationRequestDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: User Auth
+      tags:
+      - delgong-authenticate-login
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: RegisterRequestDto
+        in: body
+        name: RegisterRequestDto
+        required: true
+        schema:
+          $ref: '#/definitions/auth.RegisterRequestDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: User Auth Register
+      tags:
+      - delgong-authenticate-register
+  /story/:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - default: Bearer <Add access token here>
+        description: Insert youraccess token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: StoryRequestDto
+        in: body
+        name: AuthenticationRequestDto
+        required: true
+        schema:
+          $ref: '#/definitions/story.StoryRequestDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create Story
+      tags:
+      - Create Story
+swagger: "2.0"
